@@ -1,3 +1,14 @@
+# Data
+*.zip
+*.csv
+*.dta
+*.xls
+*.xlsx
+
+# macOS ignore
+.DS_Store
+**/__MACOSX/**
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

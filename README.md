@@ -1,39 +1,58 @@
 # mastering-py-metrics
 
-#### 介绍
-{**以下是 Gitee 平台说明，您可以替换此简介**
-Gitee 是 OSCHINA 推出的基于 Git 的代码托管平台（同时支持 SVN）。专为开发者提供稳定、高效、安全的云端软件开发协作平台
-无论是个人、团队、或是企业，都能够用 Gitee 实现代码托管、项目管理、协作开发。企业项目请看 [https://gitee.com/enterprises](https://gitee.com/enterprises)}
+## 介绍
+利用 Python 实现《精通计量：因果之道》（Mastering 'Metrics by _Joshua Angrist_）的实证因果推断案例。基于业界常用的 DoWhy 因果推断包。
 
-#### 软件架构
-软件架构说明
+## 开始之前
+### 环境配置
+**注意，DoWhy 似乎目前不支持 M 系列 mac 芯片**
+* macOS / Linux 环境下
+```bash
+conda create --name mastering-py-metrics python=3.11
+conda activate mastering-py-metrics
+which pip # make sure environmnet is activated
+pip install -r requirements.txt
+```
 
-
-#### 安装教程
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 使用说明
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+### 下载数据集
+* macOS / Linux 环境下
+```bash
+# Chapter 1
+cd ch1*/data/input
+curl -o Data.zip https://www.masteringmetrics.com/wp-content/uploads/2021/04/Data.zip
+unzip -j Data.zip -d . && rm -rf ._* && rm Data.zip
+cd ../../..
 
 
-#### 特技
+# Chapter 2
+# No avialable data
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+# Chapter 3
+cd ch3*/data/input
+curl -o mdve.dta https://masteringmetrics.com/wp-content/uploads/2015/02/mdve.dta 
+cd ../../..
+
+# Chapter 4
+cd ch4*/data/input
+curl -o mlda.dta https://masteringmetrics.com/wp-content/uploads/2015/01/AEJfigs.dta
+cd ../../..
+
+# Chapter 5
+cd ch5*/data/input
+### Bank failures in Mississippi in 1930
+curl -o banks.csv https://masteringmetrics.com/wp-content/uploads/2015/02/banks.csv
+### MLDA
+curl -o deaths.dta https://masteringmetrics.com/wp-content/uploads/2015/01/deaths.dta
+cd ../../..
+
+# Chapter 6
+cd ch6*/data/input
+# Twinsburg
+curl -o AA_small.zip https://masteringmetrics.com/wp-content/uploads/2015/02/AA_small.dta_.zip
+unzip -j AA_small.zip -d . && rm ._* && rm AA_small.zip
+# IV analysis
+curl -o ak91.dta https://masteringmetrics.com/wp-content/uploads/2015/02/ak91.dta
+# Sheepskin Effects
+curl -o clark_martorell_cellmeans.dta https://masteringmetrics.com/wp-content/uploads/2015/02/clark_martorell_cellmeans.dta
+cd ../../..
+```
