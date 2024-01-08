@@ -4,6 +4,8 @@
 *.dta
 *.xls
 *.xlsx
+*.doc
+*.docx
 
 # macOS ignore
 .DS_Store

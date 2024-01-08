@@ -1,7 +1,7 @@
 # mastering-py-metrics
 
 ## 介绍
-利用 Python 实现《精通计量：因果之道》（Mastering 'Metrics by _Joshua Angrist_）的实证因果推断案例。基于业界常用的 DoWhy 因果推断包。
+利用 Python 实现《精通计量：因果之道》（_Mastering 'Metrics_ by Joshua Angrist）的实证因果推断案例，基于业界常用的`statsmodels` 和 `DoWhy`因果推断包实现。
 
 ## 开始之前
 ### 环境配置
@@ -19,7 +19,7 @@ pip install -r requirements.txt
 ```bash
 # Chapter 1
 cd ch1*/data
-curl -o Data.zip https://www.masteringmetrics.com/wp-content/uploads/2021/04/Data.zip
+curl -o Data.zip https://www.masteringmetrics.com/wp-content/uploads/2021/03/Data.zip
 unzip -j Data.zip -d . && rm -rf ._* && rm Data.zip
 cd ../..
 
@@ -45,14 +45,14 @@ curl -o banks.csv https://masteringmetrics.com/wp-content/uploads/2015/02/banks.
 curl -o deaths.dta https://masteringmetrics.com/wp-content/uploads/2015/01/deaths.dta
 cd ../..
 
-# Chapter 6
-cd ch6*/data
-# Twinsburg
-curl -o AA_small.zip https://masteringmetrics.com/wp-content/uploads/2015/02/AA_small.dta_.zip
-unzip -j AA_small.zip -d . && rm ._* && rm AA_small.zip
-# IV analysis
-curl -o ak91.dta https://masteringmetrics.com/wp-content/uploads/2015/02/ak91.dta
-# Sheepskin Effects
-curl -o clark_martorell_cellmeans.dta https://masteringmetrics.com/wp-content/uploads/2015/02/clark_martorell_cellmeans.dta
+# # Chapter 6
+# cd ch6*/data
+# # Twinsburg
+# curl -o AA_small.zip https://masteringmetrics.com/wp-content/uploads/2015/02/AA_small.dta_.zip
+# unzip -j AA_small.zip -d . && rm ._* && rm AA_small.zip
+# # IV analysis
+# curl -o ak91.dta https://masteringmetrics.com/wp-content/uploads/2015/02/ak91.dta
+# # Sheepskin Effects
+# curl -o clark_martorell_cellmeans.dta https://masteringmetrics.com/wp-content/uploads/2015/02/clark_martorell_cellmeans.dta
 cd ../..
 ```
