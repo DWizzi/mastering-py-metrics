@@ -15,38 +15,38 @@ pip install -r requirements.txt
 ```
 
 ### 下载数据集
-* macOS / Linux 环境下
+* Linux 环境下
 ```bash
 # Chapter 1
-cd ch1*/data/input
+cd ch1*/data
 curl -o Data.zip https://www.masteringmetrics.com/wp-content/uploads/2021/04/Data.zip
 unzip -j Data.zip -d . && rm -rf ._* && rm Data.zip
-cd ../../..
+cd ../..
 
 
 # Chapter 2
 # No avialable data
 
 # Chapter 3
-cd ch3*/data/input
+cd ch3*/data
 curl -o mdve.dta https://masteringmetrics.com/wp-content/uploads/2015/02/mdve.dta 
-cd ../../..
+cd ../..
 
 # Chapter 4
-cd ch4*/data/input
+cd ch4*/data
 curl -o mlda.dta https://masteringmetrics.com/wp-content/uploads/2015/01/AEJfigs.dta
-cd ../../..
+cd ../..
 
 # Chapter 5
-cd ch5*/data/input
+cd ch5*/data
 ### Bank failures in Mississippi in 1930
 curl -o banks.csv https://masteringmetrics.com/wp-content/uploads/2015/02/banks.csv
 ### MLDA
 curl -o deaths.dta https://masteringmetrics.com/wp-content/uploads/2015/01/deaths.dta
-cd ../../..
+cd ../..
 
 # Chapter 6
-cd ch6*/data/input
+cd ch6*/data
 # Twinsburg
 curl -o AA_small.zip https://masteringmetrics.com/wp-content/uploads/2015/02/AA_small.dta_.zip
 unzip -j AA_small.zip -d . && rm ._* && rm AA_small.zip
@@ -54,5 +54,5 @@ unzip -j AA_small.zip -d . && rm ._* && rm AA_small.zip
 curl -o ak91.dta https://masteringmetrics.com/wp-content/uploads/2015/02/ak91.dta
 # Sheepskin Effects
 curl -o clark_martorell_cellmeans.dta https://masteringmetrics.com/wp-content/uploads/2015/02/clark_martorell_cellmeans.dta
-cd ../../..
+cd ../..
 ```
