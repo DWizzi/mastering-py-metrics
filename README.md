@@ -1,11 +1,11 @@
 # mastering-py-metrics
 
 ## 介绍
-利用 Python 实现《精通计量：因果之道》（_Mastering 'Metrics_ by Joshua Angrist）的实证因果推断案例，基于业界常用的`statsmodels` 和 `DoWhy`因果推断包实现。
+利用 `Python` 实现《精通计量：因果之道》（_Mastering 'Metrics_ by Joshua Angrist）的实证因果推断案例，基于业界常用的`statsmodels` 和 `DoWhy`因果推断包实现。
 
 ## 开始之前
 ### 环境配置
-**注意，DoWhy 似乎目前不支持M系列 mac 芯片**
+**注意，DoWhy 似乎目前不支持 M 系列芯片（Apple Silicon）**
 * macOS / Linux 环境下
 ```bash
 conda create --name mastering-py-metrics python=3.11
@@ -59,12 +59,12 @@ cd ../..
 
 ## 利用 Python 因果推断
 ### `statsmodels`
-计量经济学的主要武器（双重差分、断点回归等）都是基于回归进行的，而statsmodels就提供了一系列对回归分析的支持。与scikit-learn更侧重回归预测相比，statsmodels确实更加侧重标准误的计算以及对统计显著性的分析，而且许多回归结果的标准误计算和`STATA`几乎是一样的（在这点上，R做的并不出色）。事实上，大多数`STATA`能做到的事，`statsmodels`也能做到。尤其是`statsmodels.formula.api`提供了类似 `R` 语言的回归公式 API 支持，可以通过公式直接指定类别变量、添加交互项等，避免了手动清洗数据和特征工程的麻烦。
+计量经济学的主要武器（双重差分、断点回归等）都是基于回归进行的，而`statsmodels`就提供了一系列对回归分析的支持。与`scikit-learn`更侧重回归预测相比，`statsmodels`确实更加侧重标准误的计算以及对统计显著性的分析，而且许多回归结果的标准误计算和`STATA`几乎是一样的（在这点上，`R` 做的并不出色）。事实上，大多数`STATA`能做到的事，`statsmodels`也能做到。尤其是`statsmodels.formula.api`提供了类似 `R` 语言的回归公式 API 支持，可以通过公式直接指定类别变量、添加交互项等，避免了手动清洗数据和特征工程的麻烦。
 
-美中不足的是，statsmodels的API设计和scikit-learn的API设计不太一致，这会让有机器学习经验的开发者在使用`statsmodels`时感到不太适应。此外，`statsmodels`的类型注释做的并不是特别好，因此IDE的代码补全功能也不是特别友好，在开发过程中可能需要人为记忆不少常用的函数和方法。
+美中不足的是，`statsmodels`的API设计和`scikit-learn`的API设计不太一致，这会让有机器学习经验的开发者在使用`statsmodels`时感到不太适应。此外，`statsmodels`的类型注释做的并不是特别好，因此IDE的代码补全功能也不是特别友好，在开发过程中可能需要人为记忆不少常用的函数和方法。
 
 #### 回归公式支持
-大多数网上的教程会告诉你这么使用statsmodels来跑回归：
+大多数网上的教程会告诉你这么使用`statsmodels`来跑回归：
 ``` python
 import statsmodels.api as sm
 
@@ -83,7 +83,7 @@ print(results.summary())
 2. 不直观。相比于`STATA`中`reg y x control, robust`语法，上述代码很难一眼看出谁对谁跑回归。
 3. 造成太多的模板代码（boilerplate）。比如每次跑回归都要调用`sm.add_constant`函数，而这点在`STATA`中是默认的。
 
-其中，第一点问题是尤其致命的。幸运的是，在`statsmodels`的大多数回归模型中，利用回归公式可以解决上述三个问题：
+其中，第一点问题是尤其致命的。幸运的是，在`statsmodels`的大多数回归模型中，利用回归公式的 API 可以解决上述三个问题：
 ```Python
 import statsmodels.formula.api as smf
 
@@ -95,7 +95,7 @@ model = smf.ols(
 results = model.fit()
 print(results.summary())
 ```
-上述回归公式一目了然。在`~`左边是因变量，右边是自变量，用`+`拼接。
+上述回归公式一目了然。在`~`左边是因变量，右边是自变量和控制变量，用`+`拼接。
 
 回归公式的细节如下：
 * 利用`C(c)`将类别变量自动转化为0-1变量。比如，`outcome ~ treatment + C(c)`，等价于`STATA`中的`reg outcome treatment i.c`
@@ -104,7 +104,7 @@ print(results.summary())
 
 #### 聚类标准误
 
-statsmodels还允许计算聚类标准误，而非普通的稳健标准误，这只需要在调用`fit`方法时设定`cov_type`参数即可。例如，在本repo的[deaths.ipynb](https://github.com/DWizzi/mastering-py-metrics/blob/master/ch5_differences_in_differences/notebooks/deaths.ipynb)中，在跑双重差分时，需要基于州计算聚类标准误：
+和许多开发者想当然的不一样，`statsmodels`还允许计算聚类标准误，而非普通的稳健标准误，这只需要在调用`fit`方法时设定`cov_type`参数即可。例如，在本repo的[deaths.ipynb](https://github.com/DWizzi/mastering-py-metrics/blob/master/ch5_differences_in_differences/notebooks/deaths.ipynb)中，在跑双重差分时，需要基于州计算聚类标准误：
 
 ```Python
 formula = 'mrate ~ legal + beertaxa + C(state) * year + C(year)'
